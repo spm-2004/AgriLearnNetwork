@@ -693,20 +693,15 @@
     </script>
     <!-- <script src="https://mediafiles.botpress.cloud/43c4d3ec-a251-474f-8cce-3d8737805a57/webchat/config.js" defer></script> -->
     <script type="text/javascript">
-      (function (d, t) {
-        var v = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-        v.onload = function () {
-          window.voiceflow.chat.load({
-            verify: { projectID: "664632efd181ce0921d32ed5" },
-            url: "https://general-runtime.voiceflow.com",
-            versionID: "production",
-          });
-        };
-        v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-        v.type = "text/javascript";
-        s.parentNode.insertBefore(v, s);
-      })(document, "script");
+      const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+const genAI = new GoogleGenerativeAI("AIzaSyA-Rc5LcrRASGsAUBP9aeZZGC0DjHECIeA");
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+const prompt = "Explain how AI works";
+
+const result = await model.generateContent(prompt);
+console.log(result.response.text());
     </script>
 
     <script type="text/javascript">
